@@ -7,6 +7,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +41,8 @@ Route::delete('student/{id}',[StudentController::class, 'deleteStudent']);
 
 
 Route::resource('device', DeviceController::class);
+
+Route::resource('products', ProductController::class);
+Route::resource('categories', CategoryController::class);
 
 Route::get('university',[UniversityController::class, 'index']);
