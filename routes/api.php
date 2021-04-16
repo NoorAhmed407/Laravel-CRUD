@@ -9,6 +9,7 @@ use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
  
 
+Route::group(['middleware' => 'auth:sanctum'], function(){
+    //All secure URL's
+    Route::get('data',[dummyAPI::class, 'index']);
 
-Route::get('data',[dummyAPI::class, 'index']);
+    });
+
+
+
 
 
 
@@ -46,3 +53,7 @@ Route::resource('products', ProductController::class);
 Route::resource('categories', CategoryController::class);
 
 Route::get('university',[UniversityController::class, 'index']);
+
+
+Route::post('/auth/login',[UserController::class, 'login']);
+Route::post('/auth/register',[UserController::class, 'register']);
